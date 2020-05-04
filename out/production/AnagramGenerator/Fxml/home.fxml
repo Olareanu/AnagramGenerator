@@ -2,7 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,8 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
           prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="Controllers.HomeController">
@@ -32,7 +30,7 @@
                         <Insets bottom="30.0"/>
                     </VBox.margin>
                 </TextField>
-                <CheckBox mnemonicParsing="false" prefHeight="30.0" text="Compare genrated words with dictionary">
+                <CheckBox mnemonicParsing="false" prefHeight="30.0" text="Compare generated words with dictionary">
                     <VBox.margin>
                         <Insets/>
                     </VBox.margin>
@@ -40,18 +38,7 @@
                         <Insets bottom="5.0" right="10.0" top="5.0"/>
                     </padding>
                 </CheckBox>
-                <ChoiceBox maxWidth="1.7976931348623157E308" prefHeight="30.0" value="Basic Generator">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Basic Generator" />
-                            <String fx:value="Gen2" />
-                            <String fx:value="Gen3" />
-                        </FXCollections>
-                    </items>
-                    <VBox.margin>
-                        <Insets/>
-                    </VBox.margin>
-                </ChoiceBox>
+                <ComboBox fx:id="generatorsComboBox" onAction="#onSelectGenerator" prefHeight="30.0" prefWidth="1.7976931348623157E308"/>
                 <Label alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="300.0"
                        text="Generation information:">
                     <VBox.margin>
