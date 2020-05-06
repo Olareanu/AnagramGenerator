@@ -9,6 +9,11 @@ public class AdvancedGnerator implements IGenerator {
     }
 
     @Override
+    public String getGenerationInfo() {
+        return "Generation Information:\n\nThis is advanced...\n\n\nActually has big cancer";
+    }
+
+    @Override
     public String getKey() {
         return key;
     }

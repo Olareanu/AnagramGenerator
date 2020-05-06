@@ -4,6 +4,9 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,44 +18,64 @@
           prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
           fx:controller="Controllers.HomeController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="300" minWidth="10.0" prefWidth="100.0"/>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints/>
+        <RowConstraints vgrow="SOMETIMES"/>
     </rowConstraints>
-    <children>
-        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-            <children>
-                <TextField fx:id="wordBox" maxWidth="1.7976931348623157E308" onAction="#generateAnagrams"
-                           prefHeight="30.0" promptText="Type in a word...">
-                    <VBox.margin>
-                        <Insets bottom="30.0"/>
-                    </VBox.margin>
-                </TextField>
-                <CheckBox mnemonicParsing="false" prefHeight="30.0" text="Compare generated words with dictionary">
-                    <VBox.margin>
-                        <Insets/>
-                    </VBox.margin>
-                    <padding>
-                        <Insets bottom="5.0" right="10.0" top="5.0"/>
-                    </padding>
-                </CheckBox>
-                <ComboBox fx:id="generatorsComboBox" onAction="#onSelectGenerator" prefHeight="30.0" prefWidth="1.7976931348623157E308"/>
-                <Label alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="300.0"
-                       text="Generation information:">
-                    <VBox.margin>
-                        <Insets top="50.0"/>
-                    </VBox.margin>
-                </Label>
-            </children>
-            <padding>
-                <Insets bottom="40.0" left="20.0" right="20.0" top="20.0"/>
-            </padding>
-            <GridPane.margin>
+    <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.rowIndex="1">
+        <padding>
+            <Insets bottom="40.0" left="20.0" right="20.0" top="20.0"/>
+        </padding>
+        <GridPane.margin>
+            <Insets/>
+        </GridPane.margin>
+        <TextField fx:id="wordBox" maxWidth="1.7976931348623157E308" onAction="#generateAnagrams"
+                   prefHeight="30.0" promptText="Type in a word...">
+            <VBox.margin>
                 <Insets/>
-            </GridPane.margin>
-        </VBox>
-        <TextFlow lineSpacing="2.0" GridPane.columnIndex="1"/>
-    </children>
+            </VBox.margin>
+        </TextField>
+        <ComboBox fx:id="generatorsComboBox" onAction="#onSelectGenerator" prefHeight="30.0"
+                  prefWidth="1.7976931348623157E308"/>
+        <CheckBox fx:id="dictionaryCheckBox" mnemonicParsing="false" onAction="#onActivateDictionary"
+                  prefHeight="30.0" text="Compare generated words with dictionary">
+            <VBox.margin>
+                <Insets top="30.0"/>
+            </VBox.margin>
+            <padding>
+                <Insets bottom="5.0" right="10.0" top="5.0"/>
+            </padding>
+        </CheckBox>
+        <ComboBox fx:id="dictionaryComboBox" disable="true" layoutX="30.0" layoutY="140.0"
+                  onAction="#onSelectDictionary" prefHeight="30.0" prefWidth="1.7976931348623157E308"/>
+        <Label fx:id="generationInfoLabel" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308"
+               prefHeight="100.0" prefWidth="300.0" text="Generation information:">
+            <VBox.margin>
+                <Insets top="50.0"/>
+            </VBox.margin>
+        </Label>
+    </VBox>
+    <TextFlow fx:id="resultsTextFlow" lineSpacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <MenuBar prefWidth="352.0" GridPane.columnSpan="2">
+        <menus>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem fx:id="exportMenuItem" mnemonicParsing="false" onAction="#onPressExport"
+                              text="Export..."/>
+                    <MenuItem fx:id="importDictionaryMenuItem" mnemonicParsing="false"
+                              onAction="#onPressImportDictionary" text="Import dictionary"/>
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#onPressHelp"
+                              text="Help (F1)"/>
+                    <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#onPressAbout" text="About"/>
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
 </GridPane>

@@ -13,6 +13,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../Fxml/home.fxml"));
         primaryStage.setTitle("Anagram Generator");
         primaryStage.setScene(new Scene(root, 854, 480));
+        primaryStage.setMinHeight(150.0);
+        primaryStage.setMinWidth(200.0);
         primaryStage.show();
     }
 
