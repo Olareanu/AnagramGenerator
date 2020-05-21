@@ -1,6 +1,7 @@
 package Controllers;
 
-import Generators.AdvancedGnerator;
+import Exeptions.InvalidStringException;
+import Generators.AdvancedGenerator;
 import Generators.BasicGenerator;
 import Generators.GeneratorRegistry;
 import Generators.IGenerator;
@@ -13,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -30,9 +30,9 @@ public class HomeController {
     public MenuItem helpMenuItem;
     public MenuItem aboutMenuItem;
     public Label generationInfoLabel;
-    public TextArea resultsTextArea;
     public MenuItem exportMenuItem;
     public MenuItem importDictionaryMenuItem;
+    public ListView<String> resultsListView;
 
     IGenerator currentGenerator;
 
@@ -43,7 +43,7 @@ public class HomeController {
 
         //Load all the generators in the hashMap
         GeneratorRegistry.addGenerator(new BasicGenerator());
-        GeneratorRegistry.addGenerator(new AdvancedGnerator());
+        GeneratorRegistry.addGenerator(new AdvancedGenerator());
 
         //Create an array of keys of generators for displaying in comboBox
         ObservableList<String> generatorKeys = FXCollections.observableArrayList((GeneratorRegistry.listGeneratorKeys()));
@@ -54,6 +54,7 @@ public class HomeController {
         // set the first value from the list as default in the combobox
         generatorsComboBox.setValue(new BasicGenerator().getKey());
         onSelectGenerator();
+
     }
 
     public void onSelectGenerator() {
@@ -65,11 +66,7 @@ public class HomeController {
         //nothing right now, to be implemented
     }
 
-    // the most important fucking function in this whole god dam class
-    public void generateAnagrams() {
-//        System.out.println(currentGenerator.compute(wordBox.getText()));
-//        System.out.println("---------------------------------------------------------------------");
-
+    public void generateAnagrams() throws InvalidStringException {
 
         //some multithread magic maybe
 //        String inputString = wordBox.getText();
@@ -80,12 +77,17 @@ public class HomeController {
 //        // e.submit()
 
 
-        //aici paseaza si dicitionarul daca trebuie
-        resultsTextArea.setText(currentGenerator.compute(wordBox.getText()));
-        generationInfoLabel.setText(currentGenerator.getGenerationInfo());
+        try {
+            resultsListView.setItems(FXCollections.observableList(currentGenerator.compute(wordBox.getText())));
+            generationInfoLabel.setText(currentGenerator.getGenerationInfo());
+        }catch (Exception e){
+            resultsListView.getItems().clear();
+            resultsListView.getItems().add(e.getMessage());
+            if (e instanceof InvalidStringException){
+                resultsListView.getItems().add("Refer to the documentation for more details.");
+            }
+        }
 
-
-        System.out.println(currentGenerator.getGenerationInfo());
     }
 
     public void onPressHelp() {

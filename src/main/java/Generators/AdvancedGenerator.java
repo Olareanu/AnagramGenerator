@@ -1,12 +1,18 @@
 package Generators;
 
-public class AdvancedGnerator implements IGenerator {
+import Exeptions.InvalidStringException;
+
+import java.util.ArrayList;
+
+public class AdvancedGenerator implements IGenerator {
     private static final String key = "Advanced Generator";
     private static final boolean dictionaryUsage = false;
 
     @Override
-    public String compute(String word) {
-        return word;
+    public ArrayList<String> compute(String word) throws InvalidStringException {
+        ArrayList<String> outputList = new ArrayList<String>(1);
+        outputList.add(word);
+        return outputList;
     }
 
     @Override

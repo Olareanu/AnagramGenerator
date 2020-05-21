@@ -1,15 +1,17 @@
 package Generators;
 
-import Generators.Factorial;
+import Exeptions.InvalidStringException;
 
 import java.lang.*;
+import java.util.ArrayList;
 
 public class BasicGenerator implements IGenerator {
     private static final String key = "Basic Generator";
     private static final boolean dictionaryUsage = false;
     private String inputString;
-    private StringBuilder outputBuilder;
     private int[] charIndexes;
+    private ArrayList<String> outputArray;
+    private final StringBuilder stringBuilder = new StringBuilder();
     private long lastGenerationTime = 0;
     private int nrOfAnagrams = 0;
 
@@ -28,10 +30,11 @@ public class BasicGenerator implements IGenerator {
 
     private void adAnagramToOutput() {
         ++nrOfAnagrams;
+        stringBuilder.delete(0, stringBuilder.capacity()-1);
         for (int i = 0; i < inputString.length(); ++i) {
-            outputBuilder.append(inputString.charAt(charIndexes[i]));
+            stringBuilder.append(inputString.charAt(charIndexes[i]));
         }
-        outputBuilder.append('\n');
+        outputArray.add(stringBuilder.toString());
     }
 
 
@@ -51,42 +54,55 @@ public class BasicGenerator implements IGenerator {
 
 
     @Override
-    public String compute(String inputString) {
-        if (inputString.length() > 8) {
-            return "String to long for Basic Generator.";
-        }
-        //TODO: make this an exception
+    public ArrayList<String> compute(String inputString) throws InvalidStringException {
 
+        if (inputString.length() > 8) {
+            throw new InvalidStringException("The input String is to long for this type of generator.\n" +
+                    "Input a String with a maximum of 8 characters or select another generator.");
+        }
+
+        /*
+        Note:
+
+        This algorithm has been tested with a String of 11 characters.
+        The compute time was around 13 seconds with additional 5 seconds for displaying everything.
+        12 characters cause the app to eat up 8 GB of RAM and then use all the computer's threads to 100%.
+        Then it does nothing, just sits there. (Tested on an 2018 core i9 in a dell xps laptop w/ 32 GB of RAM)
+
+        To make sure other computers don't crash we set the limit to 8 characters.
+
+         */
+
+
+        //logging of some parameters to generate some information
         long lastTime = System.currentTimeMillis();
         nrOfAnagrams = 0;
+
+        //
         this.inputString = inputString;
-
-
         int length = inputString.length();
         charIndexes = new int[length + 1];
-        outputBuilder = new StringBuilder(Factorial.factorial(inputString.length()).intValue() * (length + 1));
 
-        try {
-            backtrack(0);
-        } catch (Exception e) {
-            System.out.println("Somewhere in backtracking:\n");
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+        outputArray = new ArrayList<>(Factorial.factorial(inputString.length()).intValue());
+
+
+        //do the actual backtracking
+        backtrack(0);
+
 
         lastGenerationTime = System.currentTimeMillis() - lastTime;
         System.gc();
-        return outputBuilder.toString();
+        return outputArray;
     }
 
     @Override
     public String getGenerationInfo() {
         return "Generation info:\nNr of Anagrams: " + nrOfAnagrams +
-                "\nElapsed time: " + lastGenerationTime + " millis";
+                "\nElapsed time: " + lastGenerationTime + " millis\n\nBacktracking based generator";
     }
 
     @Override
-    public boolean getDictionaryUsage(){
+    public boolean getDictionaryUsage() {
         return dictionaryUsage;
     }
 
