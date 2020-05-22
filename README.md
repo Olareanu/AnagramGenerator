@@ -1,20 +1,23 @@
 # Anagram Generator
 
-The aim of this project is to build a simple anagram generator as a learning oportunity. It should have a fairly good and easy to use GUI and implement some fairly advanced algoritms.
+The aim of this project is to build a simple anagram generator as a learning oportunity. It should have a fairly good 
+and easy to use GUI and implement some fairly advanced algoritms.
 
 ## Getting Started
 
-The repository consists of the source files for a java project. There are no official releases as of right now, so you will have to compile it yourself.
+The repository consists of the source files for a java project using gradle. This was set up in intellij IDEA.
+There is a 0.1 release available, but it's incomplete and may be buggy.
 No javadoc yet.
 
 ### Prerequisites
 
-On this project openjdk-14 and javafx 11 have been used. (Probably will also work with older standards)
-
+On this project openjdk-14 and javafx 14 have been used.
+The releases contain a custom jre image so no jre is required.
 
 ### Installing
 
-Download or clone the repository and compile it with your favourite tool. I have used the intelij built in complier.
+Download or clone the repository and compile it with your favourite tool. I have used the intellij with gradle.
+Alternatively, every release has a portable version and an installer.
 
 
 ## Built With
@@ -44,5 +47,6 @@ This project has no licence yet. This is on the long TODO list.
 
 ## Acknowledgments
 
-Special thanks to my lads Razvan Filea ([The Luck Coder] (https://github.com/TheLuckyCoder) ) and Oancea David. This project would not have been posible without them.
-We are all part of the [Gear Maniacs Robotics Team] (https://gearmaniacs.ro/)
+Special thanks to my lads Razvan Filea [The Lucky Coder](https://github.com/TheLuckyCoder)  and Oancea David
+who helped me out when I got stuck.\
+We are all part of the [Gear Maniacs Robotics Team](https://gearmaniacs.ro/)

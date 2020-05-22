@@ -93,7 +93,7 @@ public class HomeController {
     public void onPressHelp() {
         try {
             Stage helpStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("../../resources/Fxml/help.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Fxml/help.fxml"));
             helpStage.setTitle("Anagram Generator Help");
             helpStage.setScene(new Scene(root, 480, 360));
             helpStage.show();

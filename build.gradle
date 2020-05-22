@@ -31,11 +31,14 @@ jlink {
 
     javaHome = 'C:\\Users\\dell\\.jdks\\openjdk-14.0.1'
 
+    targetPlatform("win") {
+        jdkHome = "C:\\Users\\dell\\.jdks\\openjdk-14.0.1"
+    }
+
     jpackage {
         appVersion = "0.1"
         skipInstaller = false
         installerOptions = ['--win-menu']
-        installerType = "msi"
     }
 
 }

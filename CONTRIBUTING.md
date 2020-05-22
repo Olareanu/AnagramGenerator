@@ -6,5 +6,4 @@ email, or any other method with the owners of this repository before making a ch
 # Authors
 
 * **Olareanu Alexandru** wrote this thing
-* Prof. Florea Delilah is Alexes teacher
 * Razvan Filea & Oancea David are helping Alex out because he needs all the help he can get.
