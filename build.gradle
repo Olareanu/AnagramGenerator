@@ -22,6 +22,7 @@ javafx {
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
+
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {

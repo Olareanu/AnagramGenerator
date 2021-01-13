@@ -10,6 +10,11 @@ import java.util.Objects;
 
 public class Main extends Application {
 
+    /**
+     * The first method executed on application launch. This just loads the first stage and scene.
+     * @param primaryStage is part of the automatic javafx setup and is not used
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load((getClass().getResource("/Fxml/home.fxml")));

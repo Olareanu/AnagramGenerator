@@ -7,7 +7,7 @@ and easy to use GUI and implement some fairly advanced algoritms.
 
 The repository consists of the source files for a java project using gradle. This was set up in intellij IDEA.
 There is a 0.1 release available, but it's incomplete and may be buggy.
-No javadoc yet.
+See doc folder for javadoc
 
 ### Prerequisites
 
